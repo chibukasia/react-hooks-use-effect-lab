@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// import { useEffect } from "react/cjs/react.production.min";
 
 function Question({ question, onAnswered }) {
   const [timeRemaining, setTimeRemaining] = useState(10);
 
   // add useEffect code
-
+  useEffect(() => {
+    const intervalId = setInterval(() =>setTimeRemaining((timeRemaining)=>timeRemaining-1), 1000);
+    if (timeRemaining===0){
+      setTimeRemaining(10);
+      onAnswered(false);
+    }
+    return function cleanup() {
+      clearInterval(intervalId);
+    };
+  });
+  //console.log(timeRemaining);
+  // useEffect(()=>{
+  //   // if (timeRemaining===0){
+  //   //   setTimeRemaining(10);
+  //   //   onAnswered(false);
+  //   // }
+  // })
+  
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
     onAnswered(isCorrect);
