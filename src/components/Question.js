@@ -6,14 +6,17 @@ function Question({ question, onAnswered }) {
 
   // add useEffect code
   useEffect(() => {
-    const intervalId = setInterval(() =>setTimeRemaining((timeRemaining)=>timeRemaining-1), 1000);
+    const intervalId = setInterval(() =>{
+      setTimeRemaining((timeRemaining)=>timeRemaining-1);
+      console.log('running')
+    }, 1000);
     if (timeRemaining===0){
       setTimeRemaining(10);
       console.log("in use effect")
       onAnswered(false);
     }
     
-    return function cleanup() {
+    return function() {
       clearInterval(intervalId);
     };
   },[timeRemaining, onAnswered]);
