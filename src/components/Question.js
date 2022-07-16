@@ -9,19 +9,14 @@ function Question({ question, onAnswered }) {
     const intervalId = setInterval(() =>setTimeRemaining((timeRemaining)=>timeRemaining-1), 1000);
     if (timeRemaining===0){
       setTimeRemaining(10);
+      console.log("in use effect")
       onAnswered(false);
     }
+    
     return function cleanup() {
       clearInterval(intervalId);
     };
-  });
-  //console.log(timeRemaining);
-  // useEffect(()=>{
-  //   // if (timeRemaining===0){
-  //   //   setTimeRemaining(10);
-  //   //   onAnswered(false);
-  //   // }
-  // })
+  },[timeRemaining, onAnswered]);
   
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
