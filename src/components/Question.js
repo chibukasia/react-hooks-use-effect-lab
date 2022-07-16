@@ -12,7 +12,7 @@ function Question({ question, onAnswered }) {
     }, 1000);
     if (timeRemaining===0){
       setTimeRemaining(10);
-      console.log("in use effect")
+      //console.log("in use effect")
       onAnswered(false);
     }
     
